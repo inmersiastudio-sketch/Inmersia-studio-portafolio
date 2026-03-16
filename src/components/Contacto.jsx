@@ -6,10 +6,7 @@ const WHATSAPP_NUMBER = '3517018328';
 const WHATSAPP_MESSAGE = 'Hi, I saw your portfolio and I\'m interested in talking about a VR/AR project.';
 
 const socialLinks = [
-  { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com/in/tuusuario' },
-  { name: 'GitHub', icon: Github, href: 'https://github.com/tuusuario' },
   { name: 'Instagram', icon: Instagram, href: 'https://instagram.com/inmersia_studio' },
-  { name: 'Twitter', icon: Twitter, href: 'https://twitter.com/tuusuario' },
 ];
 
 export default function Contacto() {

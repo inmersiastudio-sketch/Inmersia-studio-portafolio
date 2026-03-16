@@ -73,24 +73,6 @@ export default function Hero() {
                 {t('hero', 'quote')}
               </a>
             </div>
-
-            {/* Trust indicators */}
-            <div className="flex items-center gap-8 mt-12 pt-8 border-t border-[#E4E6EA]">
-              <div>
-                <div className="text-2xl font-bold text-[#1C2B33]">50+</div>
-                <div className="text-xs text-[#8D949E] uppercase tracking-wide">{t('hero', 'stats').projects}</div>
-              </div>
-              <div className="w-px h-10 bg-[#E4E6EA]"></div>
-              <div>
-                <div className="text-2xl font-bold text-[#1C2B33]">30+</div>
-                <div className="text-xs text-[#8D949E] uppercase tracking-wide">{t('hero', 'stats').clients}</div>
-              </div>
-              <div className="w-px h-10 bg-[#E4E6EA]"></div>
-              <div>
-                <div className="text-2xl font-bold text-[#1C2B33]">5+</div>
-                <div className="text-xs text-[#8D949E] uppercase tracking-wide">{t('hero', 'stats').years}</div>
-              </div>
-            </div>
           </div>
 
           {/* Right Column - Video */}
