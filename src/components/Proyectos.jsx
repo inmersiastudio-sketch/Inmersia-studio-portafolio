@@ -12,7 +12,7 @@ const proyectos = [
     categoria: 'VR Interactivo',
     icon: Box,
     gradient: 'from-teal-400 to-cyan-500',
-    video: '/Baño.mp4',
+    video: 'https://www.youtube.com/embed/i0Odu65Dcks',
   },
   {
     id: 1,
@@ -24,7 +24,7 @@ const proyectos = [
     categoria: 'VR Interactivo',
     icon: Box,
     gradient: 'from-blue-400 to-cyan-500',
-    video: '/Habitacion Room.mp4',
+    video: 'https://www.youtube.com/embed/8a8RTxNCTfU',
   },
 ];
 
@@ -69,16 +69,15 @@ export default function Proyectos() {
                 className="group bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300"
               >
                 {/* Image Area */}
-                <div className={`h-48 bg-gradient-to-br ${proyecto.gradient} relative overflow-hidden`}>
+                <div className={`h-48 bg-gray-900 relative overflow-hidden`}>
                   {proyecto.video ? (
-                    <video
-                      src={proyecto.video}
-                      className="w-full h-full object-cover"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                    />
+                    <iframe
+                      src={`${proyecto.video}?autoplay=1&mute=1&loop=1&playlist=${proyecto.video.split('/').pop()}&controls=0&rel=0&modestbranding=1`}
+                      className="absolute top-1/2 left-1/2 w-[150%] h-[150%] max-w-none -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
                   ) : (
                     <>
                       <div className="absolute inset-0 bg-black/10" />
@@ -167,15 +166,13 @@ export default function Proyectos() {
               {/* Video Section */}
               <div className="relative aspect-video bg-gray-900">
                 {proyectoSeleccionado.video ? (
-                  <video
-                    src={proyectoSeleccionado.video}
-                    className="w-full h-full object-contain"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    controls
-                  />
+                  <iframe
+                    src={`${proyectoSeleccionado.video}?autoplay=1&rel=0&modestbranding=1`}
+                    className="w-full h-full"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
                 ) : (
                   <div className={`w-full h-full bg-gradient-to-br ${proyectoSeleccionado.gradient} flex items-center justify-center`}>
                     {(() => {

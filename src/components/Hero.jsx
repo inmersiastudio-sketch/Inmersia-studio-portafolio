@@ -96,16 +96,15 @@ export default function Hero() {
           <div className="order-1 lg:order-2 flex justify-center lg:justify-end px-4 lg:px-8">
             <div className="relative w-full max-w-2xl">
               {/* Video container - rectangular/square-ish */}
-              <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-gray-200 shadow-xl">
-                {/* Video element - autoplay loop muted */}
-                <video
-                  src="/video.mp4"
-                  className="w-full h-full object-cover bg-black"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
+              <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-gray-200 shadow-xl bg-black">
+                {/* YouTube iframe - autoplay loop muted */}
+                <iframe
+                  src="https://www.youtube.com/embed/VdfWSez0AJI?autoplay=1&mute=1&loop=1&playlist=VdfWSez0AJI&controls=0&rel=0"
+                  className="absolute top-0 left-0 w-full h-full pointer-events-none scale-125 lg:scale-110"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
               </div>
             </div>
           </div>
