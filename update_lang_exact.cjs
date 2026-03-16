@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useState } from 'react';
+const fs = require('fs');
+
+const contextContent = `import React, { createContext, useContext, useState } from 'react';
 
 export const translations = {
   es: {
@@ -175,7 +177,7 @@ export const translations = {
     contacto: {
       badge: 'CONTACT',
       title: 'Ready to Build the Future?',
-      desc: 'Tell us about your next architectural project and let\'s see how VR can elevate your presentations.',
+      desc: 'Tell us about your next architectural project and let\\'s see how VR can elevate your presentations.',
       infoTitle: 'Contact Information',
       email: 'EMAIL',
       whatsapp: 'WHATSAPP',
@@ -190,7 +192,7 @@ export const translations = {
       phMessage: 'Tell me about your project...',
       btnSend: 'Send Message',
       btnWhatsapp: 'WhatsApp',
-      successMsg: 'Message sent successfully! I\'ll get back to you soon.',
+      successMsg: 'Message sent successfully! I\\'ll get back to you soon.',
       errorMsg: 'There was an error sending the message. Please try again.'
     },
     footer: {
@@ -226,3 +228,6 @@ export const LanguageProvider = ({ children }) => {
 };
 
 export const useLanguage = () => useContext(LanguageContext);
+`;
+
+fs.writeFileSync('src/context/LanguageContext.jsx', contextContent);

@@ -93,14 +93,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      <button
-        onClick={scrollToProjects}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#8D949E] hover:text-[#1877f2] transition-colors"
-      >
-        <ArrowDown className="w-5 h-5 animate-bounce" />
-      </button>
     </section>
   );
 }

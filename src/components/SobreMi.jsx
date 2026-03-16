@@ -14,7 +14,7 @@ const skills = [
 ];
 
 export default function SobreMi() {
-  const { t } = useLanguage();
+  const { t, language, tRaw } = useLanguage();
   return (
     <section id="sobre-mi" className="relative py-20 lg:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -23,42 +23,39 @@ export default function SobreMi() {
           <div>
             <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-[#1877f2] uppercase mb-4">
               <span className="w-1.5 h-1.5 rounded-full bg-[#1877f2]"></span>
-              About Me
+              {t('sobreMi', 'badge')}
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              Developer passionate about the{' '}
-              <span className="gradient-text">future of architecture</span>
+              {t('sobreMi', 'title1')}{' '}
+              <span className="gradient-text">{t('sobreMi', 'title2')}</span>
             </h2>
 
             <div className="space-y-4 text-gray-600 leading-relaxed">
               <p>
-                I'm a full-stack developer specialized in{' '}
+                {t('sobreMi', 'p1_1')}{' '}
                 <span className="text-gray-900 font-medium">
-                  virtual and augmented reality experiences
+                  {t('sobreMi', 'p1_2')}
                 </span>{' '}
-                for the architectural sector. I combine my software development background
-                with a deep understanding of the architectural design process.
+                {t('sobreMi', 'p1_3')}
               </p>
               <p>
-                I create immersive experiences that{' '}
+                {t('sobreMi', 'p2_1')}{' '}
                 <span className="text-gray-900 font-medium">
-                  transform the way projects are presented and sold
+                  {t('sobreMi', 'p2_2')}
                 </span>.
               </p>
               <p>
-                My focus is on creating accessible, high visual impact technological
-                solutions that allow end clients to experience spaces intuitively
-                and memorably.
+                {t('sobreMi', 'p3')}
               </p>
             </div>
 
             {/* Highlights */}
             <div className="grid grid-cols-3 gap-4 mt-8">
-              {[
-                { icon: Code, label: '3+ years', desc: 'XR Development' },
-                { icon: Box, label: '5+', desc: 'Projects Delivered' },
-                { icon: Award, label: '100%', desc: 'Client Satisfaction' },
-              ].map((item, index) => {
+              {tRaw(language || 'es', 'sobreMi', 'stats').map((sInfo, i) => { const arr = [
+                { icon: Code, ...sInfo },
+                { icon: Box, ...sInfo },
+                { icon: Award, ...sInfo },
+              ]; return arr[i]; }).map((item, index) => {
                 const IconComponent = item.icon;
                 return (
                   <div
@@ -86,18 +83,18 @@ export default function SobreMi() {
                 />
                 <div>
                   <h3 className="text-xl font-bold text-gray-900">Erik Villegas</h3>
-                  <p className="text-gray-500">XR Developer & 3D Specialist</p>
+                  <p className="text-gray-500">{t('sobreMi', 'role1')}</p>
                 </div>
               </div>
 
               <div className="space-y-3">
                 <div className="flex items-center gap-3 text-sm text-gray-600">
                   <GraduationCap className="w-5 h-5 text-[#1877f2]" />
-                  <span>Systems Engineer </span>
+                  <span>{t('sobreMi', 'role2')} </span>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-gray-600">
                   <Code className="w-5 h-5 text-[#1877f2]" />
-                  <span>Full-stack Developer specialized in XR</span>
+                  <span>{t('sobreMi', 'role3')}</span>
                 </div>
               </div>
             </div>
@@ -105,7 +102,7 @@ export default function SobreMi() {
             {/* Skills Grid */}
             <div>
               <h3 className="text-lg font-bold text-gray-900 mb-4">
-                Core Technologies
+                {t('sobreMi', 'core')}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {skills.map((skill, index) => (
@@ -119,10 +116,10 @@ export default function SobreMi() {
               </div>
             </div>
 
-            {/* Certifications */}
+            {/* {t('sobreMi', 'certs')} */}
             <div className="p-6 rounded-xl bg-gray-50 border border-gray-100">
               <h4 className="text-sm font-semibold text-gray-500 mb-3">
-                Certifications
+                {t('sobreMi', 'certs')}
               </h4>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li className="flex items-center gap-2">

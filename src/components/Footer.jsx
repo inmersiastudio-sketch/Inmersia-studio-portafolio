@@ -18,7 +18,7 @@ const footerLinks = {
 };
 
 export default function Footer() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const scrollToSection = (href) => {
     const element = document.querySelector(href);
     if (element) {
@@ -34,16 +34,6 @@ export default function Footer() {
     <footer className="bg-white border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="py-16 lg:py-20 flex flex-col items-center text-center">
-          <div className="flex justify-center w-full mb-12">
-            <div className="w-1/3 max-w-sm">
-                <img
-                    src="/jojo.mp4"
-                    alt="Logo animado"
-                    className="w-full h-auto"
-                  />
-            </div>
-          </div>
-          
           <div className="max-w-2xl mx-auto mb-16">
             <h3 className="text-xl font-bold text-gray-900 mb-6">ARCHVR Studio</h3>
             <p className="text-gray-500 text-sm leading-relaxed mb-8">
@@ -89,7 +79,14 @@ export default function Footer() {
             <div>
               <h4 className="text-sm font-bold text-gray-900 mb-4">{t('footer', 'services')}</h4>
               <ul className="space-y-3">
-                {footerLinks.services.map((link) => (
+                {footerLinks.services.map((link) => {
+                  const serviciosMapEs = {
+                    'VR Portfolios': 'Portafolios VR',
+                    '3D Visualization': 'Visualización 3D',
+                    'AR Apps': 'Apps de AR',
+                    'Web Experiences': 'Experiencias Web'
+                  };
+                  return (
                   <li key={link.name}>
                     <a
                       href={link.href}
@@ -99,10 +96,10 @@ export default function Footer() {
                       }}
                       className="text-sm text-gray-500 hover:text-[#1877f2] transition-colors"
                     >
-                      {link.name}
+                      {language === 'es' ? serviciosMapEs[link.name] || link.name : link.name}
                     </a>
                   </li>
-                ))}
+                )})}
               </ul>
             </div>
 
@@ -110,13 +107,13 @@ export default function Footer() {
               <h4 className="text-sm font-bold text-gray-900 mb-4">{t('footer', 'connect')}</h4>
               <div className="bg-gray-50 p-6 rounded-2xl">
                 <p className="text-sm text-gray-600 mb-4">
-                 Ready to transform your architectural presentations?
+                 {t('footer', 'ready')}
                 </p>
                 <button
                   onClick={() => scrollToSection('#contacto')}
                   className="w-full btn-primary text-sm py-2.5"
                 >
-                  Start a Project
+                  {t('footer', 'start')}
                 </button>
               </div>
             </div>

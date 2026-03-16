@@ -27,11 +27,35 @@ export default function Contacto() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setSubmitStatus('success');
-    setFormData({ nombre: '', email: '', mensaje: '' });
-    setTimeout(() => setSubmitStatus(null), 5000);
+    
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/e78f9d9c9136cb7f811046973339111b", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            name: formData.nombre,
+            email: formData.email,
+            message: formData.mensaje,
+            _subject: "Nuevo mensaje de contacto desde tu Portafolio"
+        })
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ nombre: '', email: '', mensaje: '' });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error(error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setSubmitStatus(null), 5000);
+    }
   };
 
   const openWhatsApp = () => {
@@ -46,14 +70,13 @@ export default function Contacto() {
         <div className="max-w-3xl mx-auto text-center mb-16">
           <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-[#1877f2] uppercase mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-[#1877f2]"></span>
-            Contact
+            {t('contacto', 'badge') || 'CONTACTO'}
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Let's talk about your project
+            {t('contacto', 'title') || 'Hablemos de tu proyecto'}
           </h2>
           <p className="text-lg text-gray-600">
-            Have an architectural project you want to take to the next level?
-            I'm here to help you create impactful immersive experiences.
+            {t('contacto', 'desc') || '¿Tienes un proyecto arquitectónico que quieres llevar al siguiente nivel? Estoy aquí para ayudarte a crear experiencias inmersivas impactantes.'}
           </p>
         </div>
 
@@ -62,7 +85,7 @@ export default function Contacto() {
           <div className="lg:col-span-2 space-y-6">
             <div className="p-6 rounded-2xl bg-white border border-gray-100">
               <h3 className="text-lg font-bold text-gray-900 mb-6">
-                Contact Information
+                {t('contacto', 'infoTitle') || 'Información de Contacto'}
               </h3>
               <div className="space-y-4">
                 <a
@@ -73,7 +96,7 @@ export default function Contacto() {
                     <Mail className="w-5 h-5 text-[#1877f2]" />
                   </div>
                   <div>
-                    <div className="text-xs text-gray-500 uppercase tracking-wide">Email</div>
+                    <div className="text-xs text-gray-500 uppercase tracking-wide">{t('contacto', 'email') || 'Email'}</div>
                     <div className="text-gray-900 font-medium">inmersiastudio@gmail.com</div>
                   </div>
                 </a>
@@ -86,7 +109,7 @@ export default function Contacto() {
                     <MessageCircle className="w-5 h-5 text-green-600" />
                   </div>
                   <div>
-                    <div className="text-xs text-green-600 uppercase tracking-wide">WhatsApp</div>
+                    <div className="text-xs text-green-600 uppercase tracking-wide">{t('contacto', 'whatsapp') || 'WhatsApp'}</div>
                     <div className="text-gray-900 font-medium">+54 9 3517018328</div>
                   </div>
                 </button>
@@ -96,7 +119,7 @@ export default function Contacto() {
                     <MapPin className="w-5 h-5 text-[#1877f2]" />
                   </div>
                   <div>
-                    <div className="text-xs text-gray-500 uppercase tracking-wide">{t('contacto', 'info').location}</div>
+                    <div className="text-xs text-gray-500 uppercase tracking-wide">{t('contacto', 'location')}</div>
                     <div className="text-gray-900 font-medium">Remote / Cordoba Capital</div>
                   </div>
                 </div>
@@ -106,7 +129,7 @@ export default function Contacto() {
             {/* Social Links */}
             <div className="p-6 rounded-2xl bg-white border border-gray-100">
               <h4 className="text-sm font-semibold text-gray-500 mb-4">
-                Follow me
+                {t('contacto', 'follow') || 'Sígueme'}
               </h4>
               <div className="flex gap-3">
                 {socialLinks.map((social) => {
@@ -132,7 +155,7 @@ export default function Contacto() {
           <div className="lg:col-span-3">
             <div className="p-8 rounded-2xl bg-white border border-gray-100">
               <h3 className="text-xl font-bold text-gray-900 mb-6">
-                Send a message
+                {t('contacto', 'formTitle') || 'Enviar un mensaje'}
               </h3>
 
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -142,7 +165,7 @@ export default function Contacto() {
                       htmlFor="nombre"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      Name
+                      {t('contacto', 'labelName') || 'Nombre'}
                     </label>
                     <input
                       type="text"
@@ -152,7 +175,7 @@ export default function Contacto() {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#1877f2] focus:ring-1 focus:ring-[#1877f2] transition-all"
-                      placeholder="Your name"
+                      placeholder={t('contacto', 'phName')}
                     />
                   </div>
                   <div>
@@ -160,7 +183,7 @@ export default function Contacto() {
                       htmlFor="email"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      Email
+                      {t('contacto', 'labelEmail') || 'Email'}
                     </label>
                     <input
                       type="email"
@@ -170,7 +193,7 @@ export default function Contacto() {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#1877f2] focus:ring-1 focus:ring-[#1877f2] transition-all"
-                      placeholder="your@email.com"
+                      placeholder={t('contacto', 'phEmail')}
                     />
                   </div>
                 </div>
@@ -180,7 +203,7 @@ export default function Contacto() {
                     htmlFor="mensaje"
                     className="block text-sm font-medium text-gray-700 mb-2"
                   >
-                    Message
+                    {t('contacto', 'labelMessage') || 'Mensaje'}
                   </label>
                   <textarea
                     id="mensaje"
@@ -190,13 +213,18 @@ export default function Contacto() {
                     required
                     rows={5}
                     className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#1877f2] focus:ring-1 focus:ring-[#1877f2] transition-all resize-none"
-                    placeholder="Tell me about your project..."
+                    placeholder={t('contacto', 'phMessage')}
                   />
                 </div>
 
-                {submitStatus === 'success' && (
+                    {submitStatus === 'success' && (
                   <div className="p-4 rounded-lg bg-green-50 border border-green-200 text-green-700 text-sm">
-                    Message sent successfully! I'll get back to you soon.
+                    {t('contacto', 'successMsg') || '¡Mensaje enviado con éxito! Te contactaré pronto.'}
+                  </div>
+                )}
+                {submitStatus === 'error' && (
+                  <div className="p-4 rounded-lg bg-red-50 border border-red-200 text-red-700 text-sm">
+                    {t('contacto', 'errorMsg') || 'Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo.'}
                   </div>
                 )}
 
@@ -214,7 +242,7 @@ export default function Contacto() {
                     ) : (
                       <>
                         <Send className="w-4 h-4" />
-                        {t('contacto', 'form').send}
+                        {t('contacto', 'btnSend')}
                       </>
                     )}
                   </button>

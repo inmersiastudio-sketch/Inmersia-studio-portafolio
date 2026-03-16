@@ -2,35 +2,15 @@ import { useState } from 'react';
 import { ExternalLink, Box, Monitor, Smartphone, Eye, X } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
-const proyectos = [
-  {
-    id: 0,
-    nombre: 'Baño Moderno VR',
-    descripcion:
-      'Experiencia inmersiva de un baño moderno con iluminación realista donde la luz brilla beautifulmente en el porcelanato. Usa modelos 3D de manos para interactuar con los objetos, creando una experiencia más natural e intuitiva que los controles tradicionales.',
-    tecnologia: 'Unity + VR + Manos 3D',
-    tipoCliente: 'Proyecto personal',
-    categoria: 'VR Interactivo',
-    icon: Box,
-    gradient: 'from-teal-400 to-cyan-500',
-    video: 'https://www.youtube.com/embed/i0Odu65Dcks',
-  },
-  {
-    id: 1,
-    nombre: 'Habitación Interactiva VR',
-    descripcion:
-      'Experiencia inmersiva de una habitación donde puedes interactuar con un panel para prender y apagar las luces. Puedes mover objetos, activarlos/desactivarlos y las texturas y materiales se ven extremadamente realistas.',
-    tecnologia: 'Unity + VR',
-    tipoCliente: 'Proyecto personal',
-    categoria: 'VR Interactivo',
-    icon: Box,
-    gradient: 'from-blue-400 to-cyan-500',
-    video: 'https://www.youtube.com/embed/8a8RTxNCTfU',
-  },
-];
+
 
 export default function Proyectos() {
-  const { t } = useLanguage();
+  const { t, language, tRaw } = useLanguage();
+  const proyectosMap = tRaw(language, "proyectos", "items");
+  const proyectos = [
+    { ...proyectosMap[0], icon: Box, gradient: "from-teal-400 to-cyan-500", video: "https://www.youtube.com/embed/i0Odu65Dcks" },
+    { ...proyectosMap[1], icon: Box, gradient: "from-blue-400 to-cyan-500", video: "https://www.youtube.com/embed/8a8RTxNCTfU" }
+  ];
   const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null);
 
   const abrirModal = (proyecto) => {
