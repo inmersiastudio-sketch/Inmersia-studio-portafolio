@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useLanguage } from '../context/LanguageContext';
+import { Globe } from 'lucide-react';
 import { Menu, X } from 'lucide-react';
 
 const navLinks = [
@@ -9,6 +11,7 @@ const navLinks = [
 ];
 
 export default function Header() {
+  const { language, toggleLanguage, translations } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -58,19 +61,26 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
+            {Object.keys(translations.nav).filter(k => k !== 'contact' && k !== 'hireMe').map((key) => {
+              const hrefMap = { home: '#hero', about: '#sobre-mi', projects: '#proyectos', services: '#servicios' };
+              return (
               <a
-                key={link.name}
-                href={link.href}
+                key={key}
+                href={hrefMap[key]}
                 onClick={(e) => {
                   e.preventDefault();
-                  scrollToSection(link.href);
+                  scrollToSection(hrefMap[key]);
                 }}
                 className="text-sm font-medium text-gray-600 hover:text-[#1877f2] transition-colors"
               >
-                {link.name}
+                {translations.nav[key]}
               </a>
-            ))}
+            )})}
+            {/* Language Toggle */}
+            <button onClick={toggleLanguage} className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-[#1877f2] transition-colors ml-4 mr-0">
+              <Globe className="w-5 h-5" />
+              {language.toUpperCase()}
+            </button>
           </nav>
 
           {/* CTA Button Desktop */}
@@ -83,7 +93,7 @@ export default function Header() {
               }}
               className="btn-primary text-sm px-5 py-2.5"
             >
-              Hire Me
+              {translations.nav.hireMe}
             </a>
           </div>
 
@@ -108,19 +118,24 @@ export default function Header() {
           }`}
       >
         <div className="px-4 py-4 bg-white/95 backdrop-blur-md border-b border-gray-200/50 space-y-2">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection(link.href);
-              }}
-              className="block px-4 py-3 text-base font-medium text-gray-700 hover:text-[#1877f2] hover:bg-blue-50 rounded-lg transition-all"
-            >
-              {link.name}
-            </a>
-          ))}
+          {Object.keys(translations.nav).filter(k => k !== 'contact' && k !== 'hireMe').map((key) => {
+              const hrefMap = { home: '#hero', about: '#sobre-mi', projects: '#proyectos', services: '#servicios' };
+              return (
+              <a
+                key={key}
+                href={hrefMap[key]}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection(hrefMap[key]);
+                }}
+                className="block px-4 py-3 text-base font-medium text-gray-700 hover:text-[#1877f2] hover:bg-blue-50 rounded-lg transition-all"
+              >
+                {translations.nav[key]}
+              </a>
+            )})}
+            <button onClick={toggleLanguage} className="block w-full text-left px-4 py-3 text-base font-medium text-gray-700 hover:text-[#1877f2] hover:bg-blue-50 rounded-lg transition-all">
+              {language === 'es' ? 'Switch to English' : 'Cambiar a Español'}
+            </button>
           <div className="pt-2">
             <a
               href="#contacto"
@@ -130,7 +145,7 @@ export default function Header() {
               }}
               className="btn-primary w-full text-center"
             >
-              Hire Me
+              {translations.nav.hireMe}
             </a>
           </div>
         </div>

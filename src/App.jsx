@@ -1,3 +1,4 @@
+import { LanguageProvider } from './context/LanguageContext';
 import { Helmet } from 'react-helmet-async';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -18,6 +19,7 @@ function App() {
         />
       </Helmet>
 
+      <LanguageProvider>
       <div className="min-h-screen bg-[#FAFAF9]">
         <Header />
         <main>
@@ -29,6 +31,7 @@ function App() {
         </main>
         <Footer />
       </div>
+      </LanguageProvider>
     </>
   );
 }

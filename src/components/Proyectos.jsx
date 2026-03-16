@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ExternalLink, Box, Monitor, Smartphone, Eye, X } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const proyectos = [
   {
@@ -29,6 +30,7 @@ const proyectos = [
 ];
 
 export default function Proyectos() {
+  const { t } = useLanguage();
   const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null);
 
   const abrirModal = (proyecto) => {
@@ -48,14 +50,13 @@ export default function Proyectos() {
         <div className="max-w-3xl mx-auto text-center mb-16">
           <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-[#1877f2] uppercase mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-[#1877f2]"></span>
-            Portfolio
+            {t('proyectos', 'badge')}
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Featured Projects
+            {t('proyectos', 'title')}
           </h2>
           <p className="text-lg text-gray-600">
-            A selection of immersive experiences developed for architecture studios,
-            real estate developers, and design brands.
+            {t('proyectos', 'description')}
           </p>
         </div>
 
@@ -124,7 +125,7 @@ export default function Proyectos() {
                       onClick={() => abrirModal(proyecto)}
                       className="flex items-center gap-1 text-sm font-semibold text-[#1877f2] hover:text-[#166fe5] transition-colors"
                     >
-                      View
+                      {t('proyectos', 'view')}
                       <ExternalLink className="w-4 h-4" />
                     </button>
                   </div>
@@ -137,7 +138,7 @@ export default function Proyectos() {
         {/* View All CTA */}
         <div className="text-center mt-12">
           <button className="btn-secondary">
-            View All Projects
+            {t('proyectos', 'viewAll')}
           </button>
         </div>
 

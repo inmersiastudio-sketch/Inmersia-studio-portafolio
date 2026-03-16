@@ -1,4 +1,5 @@
 import { Glasses, Box, Smartphone, Monitor, Sparkles, Users } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const servicios = [
   {
@@ -46,6 +47,7 @@ const servicios = [
 ];
 
 export default function Servicios() {
+  const { t } = useLanguage();
   return (
     <section id="servicios" className="relative py-20 lg:py-32 bg-[#FAFAF9]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

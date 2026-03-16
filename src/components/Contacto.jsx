@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import { Mail, MapPin, Send, MessageCircle, Linkedin, Github, Instagram, Twitter } from 'lucide-react';
 
 const WHATSAPP_NUMBER = '3517018328';
@@ -12,6 +13,7 @@ const socialLinks = [
 ];
 
 export default function Contacto() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
@@ -97,7 +99,7 @@ export default function Contacto() {
                     <MapPin className="w-5 h-5 text-[#1877f2]" />
                   </div>
                   <div>
-                    <div className="text-xs text-gray-500 uppercase tracking-wide">Location</div>
+                    <div className="text-xs text-gray-500 uppercase tracking-wide">{t('contacto', 'info').location}</div>
                     <div className="text-gray-900 font-medium">Remote / Cordoba Capital</div>
                   </div>
                 </div>
@@ -215,7 +217,7 @@ export default function Contacto() {
                     ) : (
                       <>
                         <Send className="w-4 h-4" />
-                        Send Message
+                        {t('contacto', 'form').send}
                       </>
                     )}
                   </button>

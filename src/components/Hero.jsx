@@ -1,6 +1,8 @@
 import { ArrowRight, ArrowDown, Sparkles } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Hero() {
+  const { t } = useLanguage();
   const scrollToProjects = () => {
     const element = document.querySelector('#proyectos');
     if (element) {
@@ -28,23 +30,22 @@ export default function Hero() {
             <div className="inline-flex items-center gap-2 mb-6">
               <span className="w-2 h-2 rounded-full bg-[#1877f2]"></span>
               <span className="text-xs font-semibold tracking-widest text-[#606770] uppercase">
-                Next-Gen Visualization
+                {t('hero', 'badge')}
               </span>
             </div>
 
             {/* Main Heading */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1C2B33] leading-[1.1] mb-6">
-              Designing Future{' '}
+              {t('hero', 'title1')}{' '}
               <span className="bg-gradient-to-r from-[#1877f2] via-[#A197FF] to-[#1877f2] bg-clip-text text-transparent">
-                Realities
+                {t('hero', 'title2')}
               </span>{' '}
-              for Architects
+              {t('hero', 'title3')}
             </h1>
 
             {/* Description */}
             <p className="text-base sm:text-lg text-[#606770] leading-relaxed mb-8 max-w-lg">
-              Specializing in high-end VR/AR experiences that bring architectural
-              blueprints to life with immersive depth and cutting-edge technology.
+              {t('hero', 'description')}
             </p>
 
             {/* CTA Buttons - Meta Style */}
@@ -58,7 +59,7 @@ export default function Hero() {
                 }}
               >
                 <Sparkles className="w-4 h-4" />
-                View Portfolio
+                {t('hero', 'portfolio')}
                 <ArrowRight className="w-4 h-4" />
               </a>
               <a
@@ -69,7 +70,7 @@ export default function Hero() {
                   document.querySelector('#contacto').scrollIntoView({ behavior: 'smooth' });
                 }}
               >
-                Get a Quote
+                {t('hero', 'quote')}
               </a>
             </div>
 
@@ -77,17 +78,17 @@ export default function Hero() {
             <div className="flex items-center gap-8 mt-12 pt-8 border-t border-[#E4E6EA]">
               <div>
                 <div className="text-2xl font-bold text-[#1C2B33]">50+</div>
-                <div className="text-xs text-[#8D949E] uppercase tracking-wide">Projects</div>
+                <div className="text-xs text-[#8D949E] uppercase tracking-wide">{t('hero', 'stats').projects}</div>
               </div>
               <div className="w-px h-10 bg-[#E4E6EA]"></div>
               <div>
                 <div className="text-2xl font-bold text-[#1C2B33]">30+</div>
-                <div className="text-xs text-[#8D949E] uppercase tracking-wide">Clients</div>
+                <div className="text-xs text-[#8D949E] uppercase tracking-wide">{t('hero', 'stats').clients}</div>
               </div>
               <div className="w-px h-10 bg-[#E4E6EA]"></div>
               <div>
                 <div className="text-2xl font-bold text-[#1C2B33]">5+</div>
-                <div className="text-xs text-[#8D949E] uppercase tracking-wide">Years</div>
+                <div className="text-xs text-[#8D949E] uppercase tracking-wide">{t('hero', 'stats').years}</div>
               </div>
             </div>
           </div>

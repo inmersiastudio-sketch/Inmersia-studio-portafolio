@@ -1,4 +1,5 @@
 import { Glasses, Heart, ArrowUp, Instagram } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const footerLinks = {
   navigation: [
@@ -12,84 +13,81 @@ const footerLinks = {
     { name: 'VR Portfolios', href: '#servicios' },
     { name: '3D Visualization', href: '#servicios' },
     { name: 'AR Apps', href: '#servicios' },
-    { name: 'WebXR', href: '#servicios' },
-    { name: 'Consulting', href: '#servicios' },
-  ],
-  legal: [
-    { name: 'Privacy Policy', href: '#' },
-    { name: 'Terms of Service', href: '#' },
+    { name: 'Web Experiences', href: '#servicios' },
   ],
 };
 
 export default function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
+  const { t } = useLanguage();
   const scrollToSection = (href) => {
-    if (href === '#') return;
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
-  return (
-    <footer className="relative bg-white border-t border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Footer */}
-        <div className="py-12 lg:py-16">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-            {/* Brand Column */}
-            <div className="lg:col-span-1">
-              <a href="#hero" className="flex items-center gap-2 mb-6">
-                <div className="w-8 h-8 rounded-lg bg-[#1877f2] flex items-center justify-center">
-                  <Glasses className="w-5 h-5 text-white" />
-                </div>
-                <span className="text-lg font-bold text-gray-900 tracking-tight">
-                  INMERSIA <span className="font-normal text-gray-500">STUDIO</span>
-                </span>
-              </a>
-              <p className="text-gray-500 text-sm leading-relaxed mb-6">
-                Developer of immersive VR/AR experiences for the architectural sector.
-                Transforming the way architectural projects are presented and experienced.
-              </p>
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
+  return (
+    <footer className="bg-white border-t border-gray-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="py-16 lg:py-20 flex flex-col items-center text-center">
+          <div className="flex justify-center w-full mb-12">
+            <div className="w-1/3 max-w-sm">
+                <img
+                    src="/jojo.mp4"
+                    alt="Logo animado"
+                    className="w-full h-auto"
+                  />
+            </div>
+          </div>
+          
+          <div className="max-w-2xl mx-auto mb-16">
+            <h3 className="text-xl font-bold text-gray-900 mb-6">ARCHVR Studio</h3>
+            <p className="text-gray-500 text-sm leading-relaxed mb-8">
+              {t('footer', 'description')}
+            </p>
+            <div className="flex justify-center gap-6">
               <a
                 href="https://instagram.com/inmersia_studio"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-[#1877f2] hover:text-[#166fe5] font-medium"
+                className="p-3 bg-gray-50 hover:bg-[#1877f2]/10 text-gray-500 hover:text-[#1877f2] rounded-full transition-all"
               >
-                <Instagram className="w-4 h-4" />
-                @inmersia_studio
+                <Instagram className="w-5 h-5" />
               </a>
             </div>
+          </div>
 
-            {/* Navigation Links */}
+          <div className="w-full max-w-4xl grid grid-cols-2 md:grid-cols-3 gap-8 text-left border-t border-gray-100 pt-16 mb-16">
             <div>
-              <h4 className="text-sm font-bold text-gray-900 mb-4">Navigation</h4>
+              <h4 className="text-sm font-bold text-gray-900 mb-4">{t('footer', 'quickLinks')}</h4>
               <ul className="space-y-3">
-                {footerLinks.navigation.map((link) => (
-                  <li key={link.name}>
-                    <a
-                      href={link.href}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        scrollToSection(link.href);
-                      }}
-                      className="text-sm text-gray-500 hover:text-[#1877f2] transition-colors"
-                    >
-                      {link.name}
-                    </a>
-                  </li>
-                ))}
+                {footerLinks.navigation.map((link) => {
+                  const mapKey = link.name.toLowerCase().replace(' ', '');
+                  const keys = {home: 'home', about: 'about', projects: 'projects', services: 'services', contact: 'contact'};
+                  return (
+                    <li key={link.name}>
+                      <a
+                        href={link.href}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          scrollToSection(link.href);
+                        }}
+                        className="text-sm text-gray-500 hover:text-[#1877f2] transition-colors"
+                      >
+                        {t('nav', keys[mapKey] || link.name) || link.name}
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
 
-            {/* Services Links */}
             <div>
-              <h4 className="text-sm font-bold text-gray-900 mb-4">Services</h4>
+              <h4 className="text-sm font-bold text-gray-900 mb-4">{t('footer', 'services')}</h4>
               <ul className="space-y-3">
                 {footerLinks.services.map((link) => (
                   <li key={link.name}>
@@ -108,54 +106,33 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Newsletter */}
-            <div>
-              <h4 className="text-sm font-bold text-gray-900 mb-4">Stay Updated</h4>
-              <p className="text-sm text-gray-500 mb-4">
-                Subscribe to receive updates on new projects and technologies.
-              </p>
-              <form className="flex gap-2">
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  className="flex-1 px-4 py-2 rounded-lg bg-gray-50 border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#1877f2] transition-all"
-                />
+            <div className="col-span-2 md:col-span-1">
+              <h4 className="text-sm font-bold text-gray-900 mb-4">{t('footer', 'connect')}</h4>
+              <div className="bg-gray-50 p-6 rounded-2xl">
+                <p className="text-sm text-gray-600 mb-4">
+                 Ready to transform your architectural presentations?
+                </p>
                 <button
-                  type="submit"
-                  className="px-4 py-2 rounded-lg bg-[#1877f2] text-white text-sm font-semibold hover:bg-[#166fe5] transition-colors"
+                  onClick={() => scrollToSection('#contacto')}
+                  className="w-full btn-primary text-sm py-2.5"
                 >
-                  Subscribe
+                  Start a Project
                 </button>
-              </form>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-gray-100 py-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-gray-400 flex items-center gap-1">
-              © {new Date().getFullYear()} Inmersia Studio.
+          <div className="w-full flex flex-col md:flex-row items-center justify-between pt-8 border-t border-gray-100 gap-4">
+            <p className="text-sm text-gray-500">
+              © {new Date().getFullYear()} ARCHVR Studio. {t('footer', 'rights')}
             </p>
-
-            <div className="flex items-center gap-6">
-              {footerLinks.legal.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-sm text-gray-400 hover:text-[#1877f2] transition-colors"
-                >
-                  {link.name}
-                </a>
-              ))}
-            </div>
-
+            
             <button
               onClick={scrollToTop}
-              className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-[#1877f2] hover:text-white transition-all"
-              aria-label="Back to top"
+              className="p-3 bg-gray-50 hover:bg-gray-100 text-gray-500 hover:text-gray-900 rounded-full transition-all group"
+              aria-label="Scroll to top"
             >
-              <ArrowUp className="w-5 h-5" />
+              <ArrowUp className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
             </button>
           </div>
         </div>
