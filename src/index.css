@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-[#1C2B33] font-sans antialiased;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-[#1877f2] via-[#A197FF] to-[#1877f2] bg-clip-text text-transparent;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#1877f2]/10;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#1877f2] text-white font-semibold transition-all duration-200 hover:bg-[#166fe5] hover:shadow-lg hover:shadow-[#1877f2]/25 focus:outline-none focus:ring-2 focus:ring-[#1877f2] focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full border border-[#CCD0D5] text-[#1C2B33] font-semibold transition-all duration-200 hover:bg-[#F2F3F5] hover:border-[#BEC3C9] focus:outline-none focus:ring-2 focus:ring-[#8D949E] focus:ring-offset-2;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

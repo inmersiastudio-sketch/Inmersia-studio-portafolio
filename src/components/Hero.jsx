@@ -1,0 +1,124 @@
+import { ArrowRight, ArrowDown, Sparkles } from 'lucide-react';
+
+export default function Hero() {
+  const scrollToProjects = () => {
+    const element = document.querySelector('#proyectos');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center pt-20 overflow-hidden"
+    >
+      {/* Clean white background with subtle gradient */}
+      <div className="absolute inset-0 bg-white">
+        {/* Subtle decorative gradient */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-blue-50 via-transparent to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-purple-50 via-transparent to-transparent rounded-full blur-3xl" />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left Column - Text */}
+          <div className="order-2 lg:order-1">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 mb-6">
+              <span className="w-2 h-2 rounded-full bg-[#1877f2]"></span>
+              <span className="text-xs font-semibold tracking-widest text-[#606770] uppercase">
+                Next-Gen Visualization
+              </span>
+            </div>
+
+            {/* Main Heading */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1C2B33] leading-[1.1] mb-6">
+              Designing Future{' '}
+              <span className="bg-gradient-to-r from-[#1877f2] via-[#A197FF] to-[#1877f2] bg-clip-text text-transparent">
+                Realities
+              </span>{' '}
+              for Architects
+            </h1>
+
+            {/* Description */}
+            <p className="text-base sm:text-lg text-[#606770] leading-relaxed mb-8 max-w-lg">
+              Specializing in high-end VR/AR experiences that bring architectural
+              blueprints to life with immersive depth and cutting-edge technology.
+            </p>
+
+            {/* CTA Buttons - Meta Style */}
+            <div className="flex flex-wrap items-center gap-4">
+              <a
+                href="#proyectos"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#1877f2] text-white font-semibold transition-all duration-200 hover:bg-[#166fe5] hover:shadow-lg hover:shadow-blue-500/25"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToProjects();
+                }}
+              >
+                <Sparkles className="w-4 h-4" />
+                View Portfolio
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <a
+                href="#contacto"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#E4E6EA] text-[#1C2B33] font-semibold transition-all duration-200 hover:bg-[#DADDE1]"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.querySelector('#contacto').scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Get a Quote
+              </a>
+            </div>
+
+            {/* Trust indicators */}
+            <div className="flex items-center gap-8 mt-12 pt-8 border-t border-[#E4E6EA]">
+              <div>
+                <div className="text-2xl font-bold text-[#1C2B33]">50+</div>
+                <div className="text-xs text-[#8D949E] uppercase tracking-wide">Projects</div>
+              </div>
+              <div className="w-px h-10 bg-[#E4E6EA]"></div>
+              <div>
+                <div className="text-2xl font-bold text-[#1C2B33]">30+</div>
+                <div className="text-xs text-[#8D949E] uppercase tracking-wide">Clients</div>
+              </div>
+              <div className="w-px h-10 bg-[#E4E6EA]"></div>
+              <div>
+                <div className="text-2xl font-bold text-[#1C2B33]">5+</div>
+                <div className="text-xs text-[#8D949E] uppercase tracking-wide">Years</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column - Video */}
+          <div className="order-1 lg:order-2 flex justify-center lg:justify-end px-4 lg:px-8">
+            <div className="relative w-full max-w-2xl">
+              {/* Video container - rectangular/square-ish */}
+              <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-gray-200 shadow-xl">
+                {/* Video element - autoplay loop muted */}
+                <video
+                  src="/video.mp4"
+                  className="w-full h-full object-cover bg-black"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <button
+        onClick={scrollToProjects}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#8D949E] hover:text-[#1877f2] transition-colors"
+      >
+        <ArrowDown className="w-5 h-5 animate-bounce" />
+      </button>
+    </section>
+  );
+}
