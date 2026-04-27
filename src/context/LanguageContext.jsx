@@ -66,7 +66,7 @@ export const translations = {
         { label: '100%', desc: 'Satisfacción' }
       ],
       role1: 'Desarrollador XR & Especialista 3D',
-      role2: 'Ingeniero en Sistemas',
+      role2: 'Estudiante de Ingeniería en Sistemas',
       role3: 'Desarrollador Full-stack especializado en XR',
       core: 'Tecnologías Principales',
       certs: 'Certificaciones'
@@ -167,7 +167,7 @@ export const translations = {
         { label: '100%', desc: 'Client Satisfaction' }
       ],
       role1: 'XR Developer & 3D Specialist',
-      role2: 'Systems Engineer',
+      role2: 'Systems Engineering Student',
       role3: 'Full-stack Developer specialized in XR',
       core: 'Core Technologies',
       certs: 'Certificaciones'
